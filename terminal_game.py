@@ -3,6 +3,9 @@ import pygame_gui
 
 from config import Config
 
+MARGIN = 50
+INPUT_HEIGHT = 80
+
 
 class Game:
     def __init__(self, config: Config):
@@ -43,7 +46,10 @@ class Game:
         self.manager.get_theme().load_theme("terminal_theme.json")
 
         self.input_field = pygame_gui.elements.UITextEntryLine(
-            relative_rect=pygame.Rect((50, 520), (700, 50)),
+            relative_rect=pygame.Rect(
+                (MARGIN, self.config.window_height - INPUT_HEIGHT),
+                (self.config.window_width - 2 * MARGIN, MARGIN),
+            ),
             manager=self.manager,
             object_id="#input_field",
         )
@@ -98,7 +104,7 @@ class Game:
 
     def process_command(self, command: str):
         match command:
-            case "quit":
+            case "quit" | "q":
                 pygame.event.post(pygame.Event(pygame.QUIT))
                 return
             case _:
