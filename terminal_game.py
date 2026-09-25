@@ -42,11 +42,14 @@ class Game:
         )
         self.manager.get_theme().load_theme("terminal_theme.json")
 
-        self.score_label = pygame_gui.elements.UILabel(
-            relative_rect=pygame.Rect((300, 200), (200, 40)),
-            text="Hacker's terminal",
+        self.input_field = pygame_gui.elements.UITextEntryLine(
+            relative_rect=pygame.Rect((50, 520), (700, 50)),
             manager=self.manager,
+            object_id="#input_field",
         )
+        self.input_field.set_text("> ")
+
+        self.manager.set_focus_set(self.input_field)
 
         self.running = True
         return self
@@ -80,8 +83,26 @@ class Game:
                 case pygame.KEYDOWN:
                     if event.key == pygame.K_ESCAPE:
                         self.running = False
+                case pygame_gui.UI_TEXT_ENTRY_CHANGED:
+                    if event.ui_element == self.input_field:
+                        text = self.input_field.get_text()
+                        if text in ("", ">"):
+                            self.input_field.set_text("> ")
+                case pygame_gui.UI_TEXT_ENTRY_FINISHED:
+                    if event.ui_element == self.input_field:
+                        command = event.text[2:]
+                        self.process_command(command)
+                        self.input_field.set_text("> ")
 
             self.manager.process_events(event)
+
+    def process_command(self, command: str):
+        match command:
+            case "quit":
+                pygame.event.post(pygame.Event(pygame.QUIT))
+                return
+            case _:
+                print(f"Command entered: {command}")
 
     def update(self):
         self.all_sprites.update(self.dt)
