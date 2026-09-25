@@ -1,0 +1,30 @@
+{
+    "button": {
+        "font": {
+            "name": "BlackOpsOne",
+            "size": "20"
+        },
+        "colours": {
+            "normal_bg": "#25292e",
+            "hovered_bg": "#35393e"
+        }
+    },
+    "label": {
+        "font": {
+            "name": "BlackOpsOne",
+            "size": "20"
+        }
+    },
+    "text_entry_line": {
+        "font": {
+            "name": "BlackOpsOne",
+            "size": "20"
+        }
+    },
+    "progress_bar": {
+        "font": {
+            "name": "BlackOpsOne",
+            "size": "20"
+        }
+    }
+}
