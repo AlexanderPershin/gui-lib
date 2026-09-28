@@ -1,4 +1,25 @@
 {
+    "defaults": {
+        "colours": {
+            "normal_bg": "#000000",
+            "normal_text": "#00ff00",
+            "dark_bg": "#000000",
+            "normal_border": "#00ff00"
+        }
+    },
+    "#input_field": {
+        "colours": {
+            "normal_bg": "#000000",
+            "normal_text": "#00ff00",
+            "text_cursor": "#00ff00"
+        }
+    },
+    "#console_output": {
+        "colours": {
+            "normal_bg": "#000000",
+            "normal_text": "#00ff00"
+        }
+    },
     "button": {
         "font": {
             "name": "BlackOpsOne",
@@ -9,25 +30,16 @@
             "hovered_bg": "#35393e"
         }
     },
-    "label": {
-        "colours": {
-            "normal_text": "#009900"
-        },
-        "font": {
-            "name": "BlackOpsOne",
-            "size": "20"
-        }
-    },
     "text_entry_line": {
         "font": {
             "name": "BlackOpsOne",
             "size": "20"
         }
     },
-    "progress_bar": {
+    "text_box": {
         "font": {
             "name": "BlackOpsOne",
-            "size": "20"
+            "size": "18"
         }
     }
 }
