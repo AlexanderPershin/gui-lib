@@ -84,6 +84,8 @@ class Game:
             )
         )
 
+        self.counter = 0
+
         self.running = True
         return self
 
@@ -167,8 +169,26 @@ class Game:
                 self.os_command_runner.run(command)
 
     def print_to_output(self, text: str, color: str = "#ffffff"):
+        effect_id = f"my_text_effect_{self.counter}"
+        text = f"<effect id='{effect_id}'>{text}</effect>"
         html = f"<font color={color}>{text}</font><br>"
+
         self.output.append_html_text(html)
+
+        self.output.set_active_effect(
+            pygame_gui.TEXT_EFFECT_BOUNCE,
+            params={
+                "loop": False,
+                "bounce_max_height": 5,
+                "time_to_complete_bounce": 0.25,
+            },
+            effect_tag=effect_id,
+        )
+
+        self.counter += 1
+
+        if self.output.scroll_bar is not None:
+            self.output.scroll_bar.set_scroll_from_start_percentage(1.0)
 
     def update(self):
         self.all_sprites.update(self.dt)
